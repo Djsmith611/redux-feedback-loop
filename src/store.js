@@ -1,6 +1,12 @@
 import { configureStore, applyMiddleWare } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 
+/**
+ * redux reducer to contain all user input
+ * @param {object} state  object
+ * @param {object} action contains type and may contaon payload
+ * @returns new state object
+ */
 const userInput = ( state = {
     feeling:0,
     comprehension:0,
@@ -40,6 +46,11 @@ const userInput = ( state = {
     }
 };
 
+/**
+ * The redux store for this application:
+ * - configureStore automatically calls "combineReducers"
+ * - logger middleware gives detailed console logs for action calls
+ */
 const reduxStore = configureStore({
     reducer: {
         userInput
