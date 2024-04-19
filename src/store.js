@@ -40,11 +40,11 @@ const userInput = ( state = {
     }
 };
 
-const store = configureStore({
+const reduxStore = configureStore({
     reducer: {
         userInput
     },
     middleware: [applyMiddleWare(logger)]
 });
 
-export default store;
+export default reduxStore;
