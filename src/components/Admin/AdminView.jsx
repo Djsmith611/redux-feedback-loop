@@ -1,6 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Button,
+} from "@mui/material";
 
 function FeedbackResponses() {
   const [feedbackResponses, setFeedbackResponses] = useState([]);
@@ -10,23 +19,25 @@ function FeedbackResponses() {
   }, []);
 
   const fetchFeedbackResponses = () => {
-    axios.get('/api/feedback')
-      .then(response => {
+    axios
+      .get("/api/feedback")
+      .then((response) => {
         setFeedbackResponses(response.data);
       })
-      .catch(error => {
-        console.error('Error fetching feedback responses:', error);
+      .catch((error) => {
+        console.error("Error fetching feedback responses:", error);
       });
   };
 
   const handleDelete = (id) => {
-    axios.delete(`/api/feedback/${id}`)
-      .then(response => {
-        console.log('Feedback response deleted successfully:', response.data);
+    axios
+      .delete(`/api/feedback/${id}`)
+      .then((response) => {
+        console.log("Feedback response deleted successfully:", response.data);
         fetchFeedbackResponses();
       })
-      .catch(error => {
-        console.error('Error deleting feedback response:', error);
+      .catch((error) => {
+        console.error("Error deleting feedback response:", error);
       });
   };
 
@@ -43,7 +54,7 @@ function FeedbackResponses() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {feedbackResponses.map(response => (
+          {feedbackResponses.map((response) => (
             <TableRow key={response.id}>
               <TableCell>{response.feeling}</TableCell>
               <TableCell>{response.understanding}</TableCell>
