@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import {
   Table,
   TableBody,
@@ -10,31 +8,46 @@ import {
   Paper,
   Button,
 } from "@mui/material";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 
-function FeedbackResponses() {
-  const [feedbackResponses, setFeedbackResponses] = useState([]);
-
+/**
+ * Function to render a table of all responses
+ * @returns a page for the admin view of the website
+ */
+export default function AdminView() {
+  const [feedback, setFeedback] = useState([]); // Empty array to contain all feedback objects in state
+  /**
+   * Calls to GET feedback on page load
+   */
   useEffect(() => {
-    fetchFeedbackResponses();
+    fetchFeedback();
   }, []);
 
-  const fetchFeedbackResponses = () => {
+  /**
+   * Will load all feedback objects into the empty array
+   */
+  const fetchFeedback = () => {
     axios
       .get("/api/feedback")
       .then((response) => {
-        setFeedbackResponses(response.data);
+        setFeedback(response.data);
       })
       .catch((error) => {
-        console.error("Error fetching feedback responses:", error);
+        console.error("Error fetching feedback :", error);
       });
   };
 
+  /**
+   * removes item from database
+   * @param {number} id of row to be deleted from database
+   */
   const handleDelete = (id) => {
     axios
       .delete(`/api/feedback/${id}`)
       .then((response) => {
-        console.log("Feedback response deleted successfully:", response.data);
-        fetchFeedbackResponses();
+        // console.log("Feedback response deleted successfully:", response.data);
+        fetchFeedback();
       })
       .catch((error) => {
         console.error("Error deleting feedback response:", error);
@@ -50,11 +63,11 @@ function FeedbackResponses() {
             <TableCell>Understanding</TableCell>
             <TableCell>Support</TableCell>
             <TableCell>Comments</TableCell>
-            <TableCell></TableCell> {/* Empty cell for the delete button */}
+            <TableCell>Modify</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {feedbackResponses.map((response) => (
+          {feedback.map((response) => (
             <TableRow key={response.id}>
               <TableCell>{response.feeling}</TableCell>
               <TableCell>{response.understanding}</TableCell>
@@ -75,6 +88,4 @@ function FeedbackResponses() {
       </Table>
     </TableContainer>
   );
-}
-
-export default FeedbackResponses;
+};
