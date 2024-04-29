@@ -14,6 +14,7 @@ root.render(
     </React.StrictMode>
 );
 
+export {default as AdminView} from './components/Admin/AdminView.jsx';
 export {default as AppHeader} from './components/AppHeader/AppHeader.jsx';
 export {default as Comments} from './components/Form/Comments.jsx';
 export {default as Understanding} from './components/Form/Understanding.jsx';
