@@ -1,4 +1,4 @@
-import { configureStore, applyMiddleWare } from '@reduxjs/toolkit';
+import { configureStore, applyMiddleware } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 
 /**
@@ -9,7 +9,7 @@ import logger from 'redux-logger';
  */
 const userInput = ( state = {
     feeling:0,
-    comprehension:0,
+    understanding:0,
     support:0,
     comments:'',
 } , action ) => {
@@ -19,10 +19,10 @@ const userInput = ( state = {
                 ...state, 
                 feeling: action.payload 
             };
-        case 'SET_COMPREHENSION':
+        case 'SET_UNDERSTANDING':
             return { 
                 ...state, 
-                comprehension: action.payload 
+                understanding: action.payload 
             };
         case 'SET_SUPPORT':
             return { 
@@ -37,7 +37,7 @@ const userInput = ( state = {
         case 'RESET_INPUT':
             return {
                 feeling:0,
-                comprehension:0,
+                understanding:0,
                 support:0,
                 comments:'',
             };
@@ -55,7 +55,9 @@ const reduxStore = configureStore({
     reducer: {
         userInput
     },
-    middleware: [applyMiddleWare(logger)]
+    middleware: (getDefaultMiddleware) => {
+        return getDefaultMiddleware().concat(logger);
+    }
 });
 
 export default reduxStore;

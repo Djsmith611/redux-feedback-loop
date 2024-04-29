@@ -1,31 +1,22 @@
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
-import { AppHeader, FormFeeling, FormSupport, FormComprehension, FormComments, FormReview, AdminView } from '../../index';
-
+import { AppHeader, Feeling, Support, Understanding, Comments, Review, ThankYou,/*AdminView */  } from '../../index';
+import AdminView from '../Admin/AdminView';
 function App() {
 
   return (
     <div className='App'>
       <AppHeader />
       <Router>
-        <Route path='/form/feeling'>
-          <FormFeeling />
-        </Route>
-        <Route path='/form/support'>
-          <FormSupport />
-        </Route>
-        <Route path='/form/comprehension'>
-          <FormComprehension />
-        </Route>
-        <Route path='/form/comments'>
-          <FormComments />
-        </Route>
-        <Route path='/form/review'>
-          <FormReview />
-        </Route>
-        <Route path='/admin'>
-          <AdminView />
-        </Route>
+      <Routes>
+          <Route exact path='/' element={<Feeling />} />
+          <Route path='/understanding' element={<Understanding />} />
+          <Route path='/support' element={<Support />} />
+          <Route path='/comments' element={<Comments />} />
+          <Route path='/review' element={<Review />} />
+          <Route path='/thank' element={<ThankYou />} />
+          <Route path='/admin' element={<AdminView />} />
+        </Routes>
       </Router>
     </div>
   );

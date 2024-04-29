@@ -15,3 +15,9 @@ root.render(
 );
 
 export {default as AppHeader} from './components/AppHeader/AppHeader.jsx';
+export {default as Comments} from './components/Form/Comments.jsx';
+export {default as Understanding} from './components/Form/Understanding.jsx';
+export {default as Feeling} from './components/Form/Feeling.jsx';
+export {default as Review} from './components/Form/Review.jsx';
+export {default as Support} from './components/Form/Support.jsx';
+export {default as ThankYou} from './components/Form/ThankYou.jsx';
